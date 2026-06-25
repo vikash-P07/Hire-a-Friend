@@ -1,0 +1,289 @@
+/**
+ * resources/css/app.css
+ *
+ * This project uses Bootstrap 5 loaded via CDN in layouts/app.blade.php.
+ * Custom page-level styles are written inline in each Blade view's @section('styles').
+ *
+ * Modern UI Animations
+ */
+
+/* =========================================
+   1. PAGE LOAD EXPERIENCE
+   ========================================= */
+body {
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+}
+body.page-loaded {
+    opacity: 1;
+}
+
+/* =========================================
+   2. SCROLL REVEAL ANIMATIONS (ADVANCED)
+   ========================================= */
+.reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-zoom {
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: blur(8px);
+}
+
+.reveal-up { transform: translateY(20px) scale(0.98); }
+.reveal-down { transform: translateY(-20px) scale(0.98); }
+.reveal-left { transform: translateX(-20px) scale(0.98); }
+.reveal-right { transform: translateX(20px) scale(0.98); }
+.reveal-zoom { transform: scale(0.92); }
+
+.reveal-up.is-revealed, 
+.reveal-down.is-revealed, 
+.reveal-left.is-revealed, 
+.reveal-right.is-revealed,
+.reveal-zoom.is-revealed {
+    opacity: 1;
+    transform: translate(0) scale(1);
+    filter: blur(0);
+}
+
+/* 2. Floating Card & Hover Effects */
+.tilt-3d-card {
+    will-change: transform;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.magnetic-btn {
+    display: inline-block;
+    will-change: transform;
+}
+
+.card-hover {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+}
+
+/* Homepage cards hover max scale 1.02 */
+.card-hover:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+}
+
+/* Dashboard cards hover max scale 1.0 */
+.dashboard-card-hover {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+}
+
+.dashboard-card-hover:hover {
+    transform: translateY(-4px) scale(1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+html.dark .card-hover:hover,
+html.dark .dashboard-card-hover:hover {
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Floating animation for companion profile cards */
+.float-subtle {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+/* 3. Button Click / Hover interactions */
+.btn-brand, .btn-black-cta {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-brand:hover, .btn-black-cta:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(124, 58, 237, 0.4) !important;
+    filter: brightness(1.1);
+}
+
+.btn-brand:active, .btn-black-cta:active {
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 4px 8px rgba(124, 58, 237, 0.2) !important;
+}
+
+/* 4. Navbar Scroll Transition */
+.navbar-scrolled {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html.dark .navbar-scrolled {
+    background-color: rgba(11, 17, 30, 0.95) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   6. IMAGE HOVER EFFECTS
+   ========================================= */
+.img-hover-container {
+    overflow: hidden;
+    border-radius: inherit; /* Preserves card radius */
+}
+.img-hover-zoom {
+    transition: transform 400ms ease-out;
+    will-change: transform;
+}
+.img-hover-container:hover .img-hover-zoom {
+    transform: scale(1.03);
+}
+
+/* =========================================
+   7. NAVBAR ANIMATIONS
+   ========================================= */
+.navbar {
+    transition: padding 300ms ease-in-out, background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+}
+.navbar.navbar-scrolled {
+    padding-top: calc(var(--bs-navbar-padding-y) * 0.95) !important;
+    padding-bottom: calc(var(--bs-navbar-padding-y) * 0.95) !important;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    background-color: rgba(255, 255, 255, 0.98) !important; /* Slightly more opaque if it was transparent */
+}
+/* Smooth dropdowns */
+.dropdown-menu {
+    opacity: 0;
+    transform: translateY(10px);
+    display: block;
+    visibility: hidden;
+    transition: all 250ms ease-in-out;
+}
+.dropdown.show .dropdown-menu,
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* =========================================
+   8. PARALLAX EFFECTS
+   ========================================= */
+.parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    will-change: background-position;
+}
+
+/* =========================================
+   9. SKELETON LOADERS
+   ========================================= */
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+.skeleton-loader {
+    animation: shimmer 2s infinite linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 100%;
+    border-radius: 4px;
+    color: transparent !important;
+    user-select: none;
+}
+.skeleton-loader * {
+    visibility: hidden;
+}
+
+/* =========================================
+   10. MOBILE OPTIMIZATION
+   ========================================= */
+@media (max-width: 768px) {
+    /* Disable parallax on mobile to save performance */
+    .parallax-bg {
+        background-attachment: scroll !important;
+    }
+    
+    /* Reduce floating effect on mobile */
+    .float-subtle {
+        animation: none !important;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* 8. Skeleton Loaders */
+.skeleton-layer {
+    position: relative;
+    overflow: hidden;
+}
+.skeleton-layer::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255, 0.8) 0%, 
+        rgba(240,240,240, 0.9) 50%, 
+        rgba(255,255,255, 0.8) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+html.dark .skeleton-layer::before {
+    background: linear-gradient(90deg, 
+        rgba(30,41,59, 0.8) 0%, 
+        rgba(45,55,72, 0.9) 50%, 
+        rgba(30,41,59, 0.8) 100%
+    );
+}
+
+.skeleton-loaded::before {
+    opacity: 0;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* =========================================
+   11. ADMIN DASHBOARD RESTRICTIONS
+   ========================================= */
+body.admin-dashboard .card-hover:hover,
+body.admin-dashboard .dashboard-card-hover:hover {
+    transform: translateY(-2px) scale(1) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+body.admin-dashboard .tilt-3d-card {
+    transform: none !important;
+}
+
+body.admin-dashboard .magnetic-btn {
+    transform: none !important;
+}
+
+body.admin-dashboard .float-subtle {
+    animation: none !important;
+    transform: none !important;
+}
+
+body.admin-dashboard .parallax-bg {
+    background-attachment: scroll !important;
+    background-position: center !important;
+}

@@ -1,0 +1,107 @@
+/* 
+ * =========================================================
+ * COMPANION PLATFORM - THEME SYSTEM
+ * =========================================================
+ * This file replaces hardcoded static colors with dynamic
+ * CSS variables that switch automatically for Dark Mode.
+ */
+
+:root {
+    /* Base Backgrounds */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    
+    /* Text Colors */
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --text-inverse: #ffffff;
+    
+    /* Accents & Borders */
+    --border-color: #e2e8f0;
+    --border-light: #f1f5f9;
+    --bg-inverse: #000000;
+}
+
+html.dark {
+    /* Dark Mode Overrides */
+    --bg-primary: #0b111e;
+    --bg-secondary: #101827;
+    --bg-card: #141c2f;
+    --bg-card-hover: #1e293b;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-inverse: #0f172a;
+    
+    --border-color: #1e293b;
+    --border-light: #0b111e;
+    --bg-inverse: #ffffff;
+}
+
+/* 
+ * =========================================================
+ * THEME UTILITY CLASSES
+ * Replace static Bootstrap utilities with these dynamic ones
+ * =========================================================
+ */
+
+/* Text Utilities */
+.text-theme-primary { color: var(--text-primary) !important; }
+.text-theme-secondary { color: var(--text-secondary) !important; }
+.text-theme-muted { color: var(--text-muted) !important; }
+.text-theme-inverse { color: var(--text-inverse) !important; }
+
+/* Background Utilities */
+.bg-theme-primary { background-color: var(--bg-primary) !important; }
+.bg-theme-secondary { background-color: var(--bg-secondary) !important; }
+.bg-theme-card { background-color: var(--bg-card) !important; }
+
+/* Border Utilities */
+.border-theme { border-color: var(--border-color) !important; }
+
+/* Override legacy text classes specifically mapped */
+.text-dark { color: var(--text-primary) !important; }
+.text-black { color: var(--text-primary) !important; }
+.text-body { color: var(--text-primary) !important; }
+
+.bg-white { background-color: var(--bg-card) !important; }
+.bg-light { background-color: var(--bg-secondary) !important; }
+
+/* Headings inherit text primary by default */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: var(--text-primary) !important;
+}
+
+/* Rich Text / CMS Content Inline Style Overrides */
+html.dark .page-content *,
+html.dark .ck-content *,
+html.dark .rich-text *,
+html.dark [class*="content"] p,
+html.dark [class*="content"] span,
+html.dark [class*="content"] h1,
+html.dark [class*="content"] h2,
+html.dark [class*="content"] h3,
+html.dark [class*="content"] h4,
+html.dark [class*="content"] h5,
+html.dark [class*="content"] h6,
+html.dark [class*="content"] li {
+    color: var(--text-primary) !important;
+    background-color: transparent !important;
+}
+
+/* Specific fix for elements that might have hardcoded dark colors */
+html.dark [style*="color: rgb(0, 0, 0)"],
+html.dark [style*="color: #000"],
+html.dark [style*="color:#000"],
+html.dark [style*="color: rgb(51, 51, 51)"],
+html.dark [style*="color: #333"],
+html.dark [style*="color:#333"],
+html.dark [style*="color: rgb(33, 37, 41)"],
+html.dark [style*="color: #212529"],
+html.dark [style*="color:#212529"] {
+    color: var(--text-primary) !important;
+}
