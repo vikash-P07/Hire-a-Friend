@@ -2,14 +2,6 @@
 
 A comprehensive platform where users can discover and hire companions for various activities like fitness, studying, social events, and travel.
 
-## Screenshots
-
-### Home Page
-![Home Page](public/images/screenshots/homepage.png)
-
-### Admin Dashboard
-![Admin Dashboard](public/images/screenshots/dashboard.png)
-
 ## Features
 
 - **User & Partner Profiles**: Distinct dashboards for customers, companion partners, and enterprise admins.
